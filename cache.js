@@ -1,13 +1,16 @@
 export const cache = new Map();
 const MAX_AGE = 500;
+let counter = 0;
 
 export const cacheContainsKey = key => {
     if (!cache.has(key)) {
       return false;
     }
+
+    console.log(counter++)
   
     const { timeStamp } = cache.get(key);
-    const age = Date.now() - timeStamp;
+    const age = Date.now() - timeStamp; 
     if (age <= MAX_AGE) {
       return true;
     }
@@ -18,7 +21,6 @@ export const cacheContainsKey = key => {
   };
 
 export const addToCache = (key, val) => {
-    console.log(Date.now())
     cache.set(key, {
         timeStamp: Date.now(),
         val

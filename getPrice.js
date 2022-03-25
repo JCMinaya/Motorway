@@ -17,13 +17,13 @@ const getExternalPrice = async (numberPlate) => {
     console.log("Calling getExternalPrice...");
     return new Promise((resolve, reject) => {
         const random = Math.floor(Math.random() * 10) + 1;
-        const externalPrice = setTimeout(() => {
+        setTimeout(() => {
             resolve(plates[numberPlate])
         }, random * 100);
     })
 };
 
-export const getPrice = async(numberPlate, skipCacheForRead) => {
+export const getPrice = async(numberPlate, skipCacheForRead = true) => {
     if(skipCacheForRead) {
         console.log("Skipping Cache!")
         return await getExternalPrice(numberPlate);
